@@ -60,3 +60,4 @@ set_global_assignment -name VERILOG_FILE oneCom.v
 set_global_assignment -name VERILOG_FILE adder.v
 set_global_assignment -name VERILOG_FILE twoCom.v
 set_global_assignment -name VERILOG_FILE subtract.v
+set_global_assignment -name VERILOG_FILE multiplier.v
