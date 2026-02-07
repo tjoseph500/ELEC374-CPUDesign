@@ -5,27 +5,15 @@ input [31:0] M, Q;
 output [31:0] Result; 
 
 reg [31:0] Result;
-reg [31:0] A;
 
 integer i;
 
 always@(M or Q)
 begin
-	Result=Q;
 	for(i=0; i<32; i=i+1)
 	begin
-		Result=Result<<1;
-		A=A<<1;
-		A=A-M;
-		if(A<0)
-		begin
-			Result[0]=0;
-			A=A+M;
-		end
-		else
-		begin
-			Result[0]=1;
-		end
+		Result_add[i]= A_add[i]^B_add[i]^LocalCarry[i];
+		LocalCarry[i+1] = (A_add[i]&B_add[i]|(LocalCarry[i]&(A_add[i]|B_add[i])));
 	end
 end
 endmodule
