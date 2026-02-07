@@ -1,5 +1,5 @@
-Analysis & Elaboration report for CPU_G16
-Sat Feb 07 14:09:55 2026
+Analysis & Synthesis report for CPU_G16
+Sat Feb 07 14:52:03 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -7,10 +7,10 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Elaboration Summary
-  3. Parallel Compilation
-  4. Analysis & Elaboration Settings
-  5. Analysis & Elaboration Messages
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Messages
 
 
 
@@ -33,42 +33,26 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------------+
-; Analysis & Elaboration Summary                                                  ;
-+-------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status ; Failed - Sat Feb 07 14:09:55 2026               ;
-; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
-; Revision Name                 ; CPU_G16                                         ;
-; Top-level Entity Name         ; CPU_G16                                         ;
-; Family                        ; Cyclone V                                       ;
-; Logic utilization (in ALMs)   ; N/A until Partition Merge                       ;
-; Total registers               ; N/A until Partition Merge                       ;
-; Total pins                    ; N/A until Partition Merge                       ;
-; Total virtual pins            ; N/A until Partition Merge                       ;
-; Total block memory bits       ; N/A until Partition Merge                       ;
-; Total PLLs                    ; N/A until Partition Merge                       ;
-; Total DLLs                    ; N/A until Partition Merge                       ;
-+-------------------------------+-------------------------------------------------+
-
-
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 20          ;
-; Maximum allowed            ; 16          ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++-----------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status ; Failed - Sat Feb 07 14:52:03 2026               ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name               ; CPU_G16                                         ;
+; Top-level Entity Name       ; CPU_G16                                         ;
+; Family                      ; Cyclone V                                       ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                       ;
+; Total registers             ; N/A until Partition Merge                       ;
+; Total pins                  ; N/A until Partition Merge                       ;
+; Total virtual pins          ; N/A until Partition Merge                       ;
+; Total block memory bits     ; N/A until Partition Merge                       ;
+; Total PLLs                  ; N/A until Partition Merge                       ;
+; Total DLLs                  ; N/A until Partition Merge                       ;
++-----------------------------+-------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Elaboration Settings                                                                                           ;
+; Analysis & Synthesis Settings                                                                                             ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
@@ -154,14 +138,30 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+---------------------------------+
-; Analysis & Elaboration Messages ;
-+---------------------------------+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Elaboration
+Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Sat Feb 07 14:09:50 2026
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU_G16 -c CPU_G16 --analysis_and_elaboration
+    Info: Processing started: Sat Feb 07 14:51:57 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU_G16 -c CPU_G16
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 20 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file register.v
@@ -189,25 +189,25 @@ Warning (10275): Verilog HDL Module Instantiation warning at subtract.v(14): ign
 Warning (10275): Verilog HDL Module Instantiation warning at subtract.v(21): ignored dangling comma in List of Port Connections File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 21
 Info (12021): Found 1 design units, including 1 entities, in source file subtract.v
     Info (12023): Found entity 1: subtract File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 2
+Error (10759): Verilog HDL error at multiplier.v(12): object result declared in a list of port declarations cannot be redeclared within the module body File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 12
+Error (10170): Verilog HDL syntax error at multiplier.v(12) near text: "assign";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 12
+Error (10170): Verilog HDL syntax error at multiplier.v(21) near text: "}";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 21
+Error (10170): Verilog HDL syntax error at multiplier.v(25) near text: "}";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 25
+Error (10170): Verilog HDL syntax error at multiplier.v(29) near text: "}";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 29
+Error (10170): Verilog HDL syntax error at multiplier.v(33) near text: "}";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 33
+Error (10112): Ignored design unit "booth_multiplier" at multiplier.v(2) due to previous errors File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/multiplier.v Line: 2
 Info (12021): Found 0 design units, including 0 entities, in source file multiplier.v
-Info (12021): Found 1 design units, including 1 entities, in source file and_tb.v
-    Info (12023): Found entity 1: tb_AND File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/and_tb.v Line: 2
-Warning (10236): Verilog HDL Implicit Net warning at twoCom.v(8): created implicit net for "const_1" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/twoCom.v Line: 8
-Warning (10236): Verilog HDL Implicit Net warning at twoCom.v(12): created implicit net for "A_oneCom" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/twoCom.v Line: 12
-Warning (10236): Verilog HDL Implicit Net warning at twoCom.v(13): created implicit net for "Result_oneCom" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/twoCom.v Line: 13
-Warning (10236): Verilog HDL Implicit Net warning at twoCom.v(18): created implicit net for "A_add" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/twoCom.v Line: 18
-Warning (10236): Verilog HDL Implicit Net warning at twoCom.v(19): created implicit net for "B_add" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/twoCom.v Line: 19
-Warning (10236): Verilog HDL Implicit Net warning at twoCom.v(20): created implicit net for "Result_add" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/twoCom.v Line: 20
-Warning (10236): Verilog HDL Implicit Net warning at subtract.v(12): created implicit net for "A_twoCom" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 12
-Warning (10236): Verilog HDL Implicit Net warning at subtract.v(13): created implicit net for "Result_twoCom" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 13
-Warning (10236): Verilog HDL Implicit Net warning at subtract.v(18): created implicit net for "A_add" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 18
-Warning (10236): Verilog HDL Implicit Net warning at subtract.v(19): created implicit net for "B_add" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 19
-Warning (10236): Verilog HDL Implicit Net warning at subtract.v(20): created implicit net for "Result_add" File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/subtract.v Line: 20
-Error (12007): Top-level design entity "CPU_G16" is undefined
-Error: Quartus Prime Analysis & Elaboration was unsuccessful. 1 error, 19 warnings
+Info (12021): Found 0 design units, including 0 entities, in source file and_tb.v
+Info (12021): Found 1 design units, including 1 entities, in source file divider.v
+    Info (12023): Found entity 1: divider File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/divider.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file shiftright.v
+    Info (12023): Found entity 1: shiftRight File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/shiftRight.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file shiftleft.v
+    Info (12023): Found entity 1: shiftLeft File: C:/Users/22qbn1/FPGA/ELEC374-CPUDesign/shiftLeft.v Line: 1
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 7 errors, 8 warnings
     Error: Peak virtual memory: 4783 megabytes
-    Error: Processing ended: Sat Feb 07 14:09:55 2026
-    Error: Elapsed time: 00:00:05
+    Error: Processing ended: Sat Feb 07 14:52:03 2026
+    Error: Elapsed time: 00:00:06
     Error: Total CPU time (on all processors): 00:00:12
 
 
