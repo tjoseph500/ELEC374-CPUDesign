@@ -10,13 +10,12 @@ reg [32:0] LocalCarry;
 integer i;
 
 always@(A_add or B_add)
+begin
+	LocalCarry= 32'd0;
+	for(i=0; i<32; i=i+1)
 	begin
-		LocalCarry= 9'd0;
-		for(i=0; i<32; i=i+1)
-		
-		begin
-			Result_add[i]= A_add[i]^B_add[i]^LocalCarry[i];
-			LocalCarry[i+1] = (A_add[i]&B_add[i]|(LocalCarry[i]&(A_add[i]|B_add[i]));
-		end
+		Result_add[i]= A_add[i]^B_add[i]^LocalCarry[i];
+		LocalCarry[i+1] = (A_add[i]&B_add[i]|(LocalCarry[i]&(A_add[i]|B_add[i])));
+	end
 end
 endmodule

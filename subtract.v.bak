@@ -7,6 +7,13 @@ output [31:0] Result_sub;
 reg [31:0] Result_sub;
 reg [31:0] temp;
 
+integer i;
+
+always@(A_sub or B_sub)
+begin
+
+end
+
 TwoCom twoCom
 (
 	.BSub(A_twoCom), 

@@ -6,7 +6,7 @@ module mdr
 	output wire [31:0]BusMuxIn
 	
 );
-	wire mdrin;
+	reg [31:0] mdrIn;
 	initial mdrIn = 32'h0;
 	
 	always @(posedge clock)begin
@@ -20,7 +20,7 @@ module mdr
 		
 	end
 	
-   Register register
+   Register register1
 	 (
 		.clear(clear), 
 		.clock(clock),
