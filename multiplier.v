@@ -17,8 +17,7 @@ module booth_multiplier (
 	 
 	 shiftLeft shiftMX2 (.M(A), .const_1(B), .M_2(Result));
 	 shiftLeft shiftXNeg2 (.M(A), .const_1(B), .M_Neg2(Result));
-	 shiftLeft shiftXNeg1 (.M(A), .const_1(B), .M_Neg1(Result));
-	 
+
 	TwoCom twoComNeg1(.M_Neg1(A_twoCom), .M_Neg1(Result_twoCom));
 	TwoCom twoComNeg2(.M_Neg2(A_twoCom), .M_Neg2(Result_twoCom));
 
