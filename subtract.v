@@ -2,9 +2,8 @@
 module subtract(A_sub, B_sub, Result_sub);
 
 input [31:0] A_sub, B_sub;
-output [31:0] Result_sub; 
+output reg [63:0] Result_sub; 
 
-reg [31:0] Result_sub;
 reg [31:0] temp;
 
 TwoCom twoCom
