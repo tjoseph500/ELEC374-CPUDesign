@@ -31,4 +31,3 @@ begin
 	Result = {A[32:0], Q_temp};
 end
 endmodule
-a
