@@ -6,6 +6,7 @@ module divider(
 );
 
 reg [32:0] A;
+reg [63:0] Q_temp; 
 
 integer i;
 
