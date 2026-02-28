@@ -1,4 +1,5 @@
-module shiftLeft(A, shiftamount, Result);
+// 32-bit Rotate Left
+module rotate_left(A, shiftamount, Result);
 
 input  [31:0] A;
 input  [4:0] shiftamount;     // number of bits to rotate
@@ -46,11 +47,10 @@ begin
         Result[3]  = temp[2];
         Result[2]  = temp[1];
         Result[1]  = temp[0];
-        Result[0]  = 0;
+        Result[0]  = temp[31];
 
         temp = Result;
     end
 end
-
 
 endmodule
