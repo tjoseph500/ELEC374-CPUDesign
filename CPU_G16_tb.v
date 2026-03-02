@@ -7,8 +7,9 @@ module CPU_G16_tb;
 
     reg PCout, Zlowout, MDRout, R5out, R6out;
     reg MARin, Zin, PCin, MDRin, IRin, Yin;
-    reg IncPC, Read, AND, R2in, R5in, R6in;
-    reg Clock;
+    reg IncPC, Read, SUB, R2in, R5in, R6in;
+    reg Clock, stateClock;
+	 reg clear;
     reg [31:0] Mdatain;
 
     parameter Default     = 4'b0000,
@@ -27,21 +28,21 @@ module CPU_G16_tb;
 
     reg [3:0] Present_state = Default;
 
-    CPU_G16 DUT (
-        PCout, Zlowout, MDRout, R5out, R6out,
-        MARin, Zin, PCin, MDRin, IRin, Yin,
-        IncPC, Read, AND, R2in, R5in, R6in,
-        Clock, Mdatain
-    );
+ CPU_G16 DUT(Clock, clear, Read, R0out, R1out, R2out, R3out, R4out, R5out, R6out, R7out, R8out, R9out, R10out, R11out, R12out, R13out, R14out, R15out, HIout, LOout, Zhighout, Zlowout, PCout, MDRout, InPortout, Cout, R0in, R1in, R2in, R3in, R4in, R5in, R6in, R7in, R8in, R9in, R10in, R11in, R12in, R13in, R14in, R15in, HIin, LOin, Zin, Zhighin, Zlowin, PCin, MDRin, InPortin, Cin, Yin, IRin, ADD, SUB, MUL, DIV, SHR, SHRA, SHL, ROR, ROL, AND, OR, NEG, NOT, Mdatain);
 
     // Clock generation
     initial begin
         Clock = 0;
-        forever #10 Clock = ~Clock;
+        forever #1 Clock = ~Clock;
+    end
+	 
+	 initial begin
+        stateClock = 0;
+        forever #50 stateClock = ~stateClock;
     end
 
     // FSM state transitions
-    always @(posedge Clock) begin
+    always @(posedge stateClock) begin
         case (Present_state)
             Default     : Present_state = Reg_load1a;
             Reg_load1a  : Present_state = Reg_load1b;
@@ -66,8 +67,9 @@ module CPU_G16_tb;
                 PCout <= 0; Zlowout <= 0; MDRout <= 0;
                 MARin <= 0; Zin <= 0;
                 PCin  <= 0; MDRin <= 0; IRin <= 0; Yin <= 0;
-                IncPC <= 0; Read  <= 0; AND  <= 0;
+                IncPC <= 0; Read  <= 0; SUB  <= 0;
                 R2in  <= 0; R5in  <= 0; R6in <= 0;
+					 clear <= 0;
                 Mdatain <= 32'h00000000;
             end
 
@@ -107,23 +109,29 @@ module CPU_G16_tb;
 
             T0: begin
                 PCout <= 1; MARin <= 1; IncPC <= 1; Zin <= 1;
+					 #15 PCout <= 0; IncPC <= 0; MARin<=0; Zin<=0;
             end
 
             T1: begin
                 Zlowout <= 1; PCin <= 1; Read <= 1; MDRin <= 1;
                 Mdatain <= 32'h112B0000;  // opcode for "and R2, R5, R6"
+					 #15 Zlowout <= 0;
             end
 
             T2: begin
                 MDRout <= 1; IRin <= 1;
+					 #15 MDRout <= 0; IRin <= 0;
+
             end
 
             T3: begin
                 R5out <= 1; Yin <= 1;
+					 #15 R5out <= 0; Yin <= 0;
             end
 
             T4: begin
-                R6out <= 1; AND <= 1; Zin <= 1;
+                R6out <= 1; SUB <= 1; Zin <= 1;
+					 #15 R6out <= 0; Zin <= 0;
             end
 
             T5: begin

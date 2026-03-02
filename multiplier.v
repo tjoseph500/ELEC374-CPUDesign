@@ -1,62 +1,35 @@
-//// Booth Multiplier
 module booth_multiplier (
-    input [31:0] M,         
-    input [31:0] Q,        
-    output reg [63:0] Result
+    input  wire signed [31:0] M,
+    input  wire signed [31:0] Q,
+    output reg  signed [63:0] Result
 );
-//
-//    integer i;
-//    reg [32:0] M_2;
-//	 reg [32:0] M_Neg2;
-//    reg [31:0] M_Neg1;
-//	 reg [32:0] M_Neg2_Done;
-//    reg [31:0] M_Neg1_Done;
-//	 reg [63:0] temp;
-//	 	 
-//	 assign const_1 = 1'b1;
-//    wire [32:0] Q_Implicit;
-//    assign Q_Implicit = Q<<1;	 
-//	 
-//	 shiftLeft shiftMX2 (.M(A), .const_1(B), .M_2(Result));
-//	 shiftLeft shiftXNeg2 (.M(A), .const_1(B), .M_Neg2(Result));
-//
-//	twoCom twoComNeg1(M_Neg1, M_Neg1_Done);
-//	twoCom twoComNeg2(.M_Neg2(A_twoCom), .M_Neg2_Done(Result_twoCom));
-//
-//    always @(M or Q)
-//	 begin       
-//        for (i = 1; i < 32; i = i + 2)
-//		  begin
-//				if(Q_Implicit[i+1]==1&&Q_Implicit[i]==0&&Q_Implicit[i-1]==0)
-//				begin
-//					//Case -2
-//					temp<=M_Neg2<<i;
-//					Result<=temp+Result;
-//				end
-//				else if(Q_Implicit[i+1]==0&&Q_Implicit[i]==0&&Q_Implicit[i-1]==1||Q_Implicit[i+1]==0&&Q_Implicit[i]==1&&Q_Implicit[i-1]==0)
-//				begin
-//					//Case 1
-//					temp<=M<<i;
-//					Result<=temp+Result;
-//				end
-//				else if(Q_Implicit[i+1]==1&&Q_Implicit[i]==0&&Q_Implicit[i-1]==1||Q_Implicit[i+1]==1&&Q_Implicit[i]==1&&Q_Implicit[i-1]==0)
-//				begin
-//					//Case -1
-//					temp<=M_Neg1<<i;
-//					Result<=temp+Result;
-//				end
-//				else if(Q_Implicit[i+1]==0&&Q_Implicit[i]==1&&Q_Implicit[i-1]==1)
-//				begin
-//					//Case +2
-//					temp<=M_2<<i;
-//					Result<=temp+Result;
-//				end
-//				else 
-//				begin
-//					//Case 0
-//				end
-//		  
-//        end
-//    end
-//	 
+
+    integer i;
+    wire signed [31:0] M_Neg;
+    reg  signed [63:0] partial;
+    wire [32:0] Q_ext;
+
+    // Q with extra LSB bit for Booth encoding
+    assign Q_ext = {Q, 1'b0};
+
+    // 2's complement of M
+    assign M_Neg = -M;
+
+    always @(*) begin
+        partial = 64'sd0;
+
+        for (i = 1; i < 32; i = i + 2) begin
+            case ({Q_ext[i+1], Q_ext[i], Q_ext[i-1]})
+                3'b001, 3'b010: partial = partial + ({{32{M[31]}},     M}      <<< (i-1)); // +1*M
+                3'b011:         partial = partial + ({{31{M[31]}},     M, 1'b0}<<< (i-1)); // +2*M
+                3'b100:         partial = partial + ({{31{M_Neg[31]}}, M_Neg,1'b0}<<< (i-1)); // -2*M
+                3'b101, 3'b110: partial = partial + ({{32{M_Neg[31]}}, M_Neg}  <<< (i-1)); // -1*M
+                default: ; // 000 and 111 do nothing
+            endcase
+        end
+
+        // 32-bit datapath output: keep only the lower 32 bits (wrap)
+        Result = partial[31:0];
+    end
+
 endmodule

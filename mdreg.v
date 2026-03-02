@@ -11,7 +11,8 @@ module mdr
 	
 	always @(posedge clock)begin
 		
-		if (read) begin
+		if (read==1)
+		begin
 			mdrIn <= Mdatain;
 		end
 		else begin
@@ -20,12 +21,5 @@ module mdr
 		
 	end
 	
-   Register register1
-	 (
-		.clear(clear), 
-		.clock(clock),
-		.enable(enable),
-		.mdrIn(BusMuxOut),
-		.BusMuxIn(BusMuxIn)
-    );
+   register mdr_1(clear, clock, enable, mdrIn, BusMuxIn); 
 endmodule
